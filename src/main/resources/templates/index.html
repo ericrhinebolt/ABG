@@ -1,38 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
-
-<!--    DELETE THESE(only for test viewing)   -->
-    <link type="text/css" rel="stylesheet" href="../static/css/style.css" />
-    <link type="text/css" rel="stylesheet" href="../static/css/media.css" />
-<!--    DOWN TO HERE   -->
-    <link type="text/css" rel="stylesheet" href="/css/style.css" />
-    <link type="text/css" rel="stylesheet" href="/css/media.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap"
+          rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/media.css"/>
     <title>ABG - Alpha, Beta, Gold</title>
 </head>
 <body>
-<nav class="navBar">
-    <a href="index.html">
-        <img class="logo" src="../static/img/space_icon.svg">
-    </a>
-    <div class="navList">
-        <a href="reviews.html" class="navBtn">Reviews</a>
-        <a href="games.html" class="navBtn">Games</a>
-        <a href="user_data.html" class="navBtn">User Data</a>
-        <a href="about.html" class="navBtn">About</a>
-        <a href="contact.html" class="navBtn">Contact</a>
-    </div>
-    <div class="navUser">
-        <a href="profile.html" class="userBtn">User Profile</a>
-        <a href="#" class="userBtn">Login/Logout</a>
-    </div>
-</nav>
+<div th:replace="fragments/nav">Navbar</div>
+<!--<nav class="navBar">-->
+<!--    <a th:href="@{index}">-->
+<!--        <img class="logo" src="/img/abg_logo.svg" alt="ABG Logo">-->
+<!--    </a>-->
+<!--    <div class="navList">-->
+<!--        <a th:href="@{reviews}" class="navBtn">Reviews</a>-->
+<!--        <a th:href="@{games}" class="navBtn">Games</a>-->
+<!--        <a sec:authorize ="isAuthenticated()" th:href="@{'favorites/{username}' (username = ${#authentication.getPrincipal().getUsername})}" class="navBtn">Favorites</a>-->
+<!--        <a th:href="@{about}" class="navBtn">About</a>-->
+<!--        <a th:href="@{contact}" class="navBtn">Contact</a>-->
+<!--    </div>-->
+<!--    <div class="navUser">-->
+<!--        <div class="userWelcome">Welcome-->
+<!--            <span sec:authentication="name">Username</span>!-->
+<!--        </div>-->
+<!--        <a sec:authorize ="isAuthenticated()" th:href="@{user_profile}" class="userBtn">User Profile</a>-->
+<!--        <a sec:authorize="isAnonymous()" th:href="@{/login}" class="userBtn">Login</a>-->
+<!--        <a sec:authorize ="isAuthenticated()" th:href="@{/logout}" class="userBtn">Logout</a>-->
+<!--    </div>-->
+<!--</nav>-->
 <div class="main">
-    <h1>ABG - Alpha, Beta, Gold</h1>
+    <div class="content">
+        <div class="hero">
+            <h1 class="heroHeading">Welcome to Alpha, Beta, Gold.</h1>
+            <div class="heroSplit">
+                <div class="heroCenterBox"><p class="heroText">Keep up with news on your favorite games and see what others think about your
+                future favorite games.</p></div>
+                <img class="heroImg" src="/img/hero.jpg" alt="Image of colorful desktop computer">
+            </div>
+        </div>
+    </div>
 </div>
+<script src="/script/script.js"></script>
 </body>
 </html>

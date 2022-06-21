@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <link th:rel="stylesheet" th:href="@{../../webjars/bootstrap/5.1.3/css/bootstrap.min.css} "/>
+    <link type="text/css" rel="stylesheet" href="/css/style.css" />
+    <link type="text/css" rel="stylesheet" href="/css/media.css" />
+    <title>ABG - Alpha, Beta, Gold</title>
+</head>
+<body>
+<div th:replace="fragments/nav_two">Navbar</div>
+<!--<nav class="navBar">-->
+<!--    <a th:href="@{../../index}">-->
+<!--        <img class="logo" src="/img/abg_logo.svg" alt="ABG Logo">-->
+<!--    </a>-->
+<!--    <div class="navList">-->
+<!--        <a th:href="@{../../reviews}" class="navBtn">Reviews</a>-->
+<!--        <a th:href="@{../../games}" class="navBtn">Games</a>-->
+<!--        <a th:href="@{'../../favorites/{username}' (username = ${#authentication.getPrincipal().getUsername})}" class="navBtn">Favorites</a>-->
+<!--        <a th:href="@{../../about}" class="navBtn">About</a>-->
+<!--        <a th:href="@{../../contact}" class="navBtn">Contact</a>-->
+<!--    </div>-->
+<!--    <div class="navUser">-->
+<!--        <div class="userWelcome">Welcome-->
+<!--            <span sec:authentication="name">Username</span>!-->
+<!--        </div>-->
+<!--        <a sec:authorize ="isAuthenticated()" th:href="@{../../user_profile}" class="userBtn">User Profile</a>-->
+<!--        <a sec:authorize="isAnonymous()" th:href="@{../../login}" class="userBtn">Login</a>-->
+<!--        <a sec:authorize ="isAuthenticated()" th:href="@{../../logout}" class="userBtn">Logout</a>-->
+<!--    </div>-->
+<!--</nav>-->
+<div class="main">
+    <h1>Reviews</h1>
+        <form class="searchBox pb-5">
+            <label for="gameSearch4"></label><input id="gameSearch4" type="text">
+            <button type="submit" id="searchBtn4">Search</button>
+        </form>
+</div>
+
+<div class="container">
+    <div class="alertBox">
+        <div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
+    </div>
+    <div class="row backBox">
+        <div class="col-lg-10 mt-5 mb-5">
+
+<div class="reviewMainDiv" th:each="review : ${review.page}">
+    <div class="reviewTitleBox pt-2">
+        <div class="reviewDiv reviewTitle" th:text="${review.reviewGame.title}">id</div>
+        <div class="reviewDiv" th:text="${review.reviewGame.appId}">id</div>
+    </div>
+    <div class="reviewDiv dateDiv" th:text="${review.date}">date</div>
+    <div class="reviewDiv reviewContentDiv" th:text="'> ' + ${review.review}">title</div>
+    <div class="reviewDiv reviewEditBox">
+        <form class="pe-4" action="#"
+              th:if="${#strings.equals(#authentication.getPrincipal().getUsername(), review.reviewUser.userName)}"
+              th:action="@{'/reviews/update/{reviewId}' (reviewId = ${review.reviewId})}" th:method="get">
+            <button class="btn" type="submit">Edit</button>
+        </form>
+        <form action="#"
+              th:if="${#strings.equals(#authentication.getPrincipal().getUsername(), review.reviewUser.userName)}"
+              th:action="@{'/reviews/delete/{reviewId}' (reviewId = ${review.reviewId})}"
+              th:method="delete">
+            <button class="btn" type="submit">Delete?</button>
+        </form>
+    </div>
+</div>
+
+<!--<div class="container">-->
+<!--    <div class="row">-->
+<!--        <div class="col-lg-10 mt-5 mb-5">-->
+<!--            <table id="posts" class="table table-responsive-lg">-->
+<!--                <thead>-->
+<!--                <tr class="gameRowHead">-->
+<!--                    <th class="tableTitle">Steam ID</th>-->
+<!--                    <th class="tableTitle">Title</th>-->
+<!--                    <th class="tableTitle">Review</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody class="gamesTable">-->
+
+<!--                <tr class="gameRow gameRowHover" th:each="review : ${review.page}">-->
+<!--                    <td class="gameCell" th:text="${review.reviewGame.appId}">id</td>-->
+<!--                    <td class="gameCell" th:text="${review.reviewGame.title}">id</td>-->
+<!--                    <td class="gameCell" th:text="${review.review}">title</td>-->
+<!--                </tr>-->
+
+<!--                </tbody>-->
+<!--            </table>-->
+
+            <nav aria-label="Page navigation" id="nums" class="paging">
+                <ul class="pagination" th:if="${review.page.totalPages > 1}">
+                    <li class="page-item" th:classappend="${!review.paging.isPrevEnabled()? 'disabled' : ''}">
+                        <a class="page-link" th:href="@{'review?pageNumber=' + ${review.paging.pageNumber - 1}}"
+                           tabindex="-1">Previous</a>
+                    </li>
+                    <th:block th:each="item : ${review.paging.getItems()}">
+                        <li class="page-item" th:classappend="${item.index == review.paging.pageNumber? 'active' : ''}"
+                            th:if="${item.pageItemType.name() == 'PAGE'}">
+                            <a class="page-link" th:href="@{'review?pageNumber=' + ${item.index}}"
+                               th:text="${item.index}"></a>
+                        </li>
+                        <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
+                            <a class="page-link" href="#">...</a>
+                        </li>
+                    </th:block>
+                    <li class="page-item" th:classappend="${!review.paging.isNextEnabled()? 'disabled' : ''}">
+                        <a class="page-link" th:href="@{'review?pageNumber=' + ${review.paging.pageNumber + 1}}">Next</a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script src="/script/script.js"></script>
+</body>
+</html>

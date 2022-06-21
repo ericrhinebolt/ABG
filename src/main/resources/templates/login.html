@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="/css/style.css" />
+    <link type="text/css" rel="stylesheet" href="/css/media.css" />
+    <title>ABG - Alpha, Beta, Gold</title>
+</head>
+<body>
+<div th:replace="fragments/nav_login">Navbar</div>
+<!--<nav class="navBar">-->
+<!--    <a th:href="@{index}">-->
+<!--        <img class="logo" src="/img/abg_logo.svg" alt="ABG Logo">-->
+<!--    </a>-->
+<!--    <div class="navList">-->
+<!--        <a th:href="@{reviews}" class="navBtn">Reviews</a>-->
+<!--        <a th:href="@{games}" class="navBtn">Games</a>-->
+<!--        <a sec:authorize ="isAuthenticated()" th:href="@{'favorites/{username}' (username = ${#authentication.getPrincipal().getUsername})}" class="navBtn">Favorites</a>-->
+<!--        <a th:href="@{about}" class="navBtn">About</a>-->
+<!--        <a th:href="@{contact}" class="navBtn">Contact</a>-->
+<!--    </div>-->
+<!--    <div class="navUser">-->
+<!--        <div class="userWelcome">Welcome-->
+<!--            <span sec:authentication="name">Username</span>!-->
+<!--        </div>-->
+<!--        <a sec:authorize ="isAuthenticated()" th:href="@{user_profile}" class="userBtn">User Profile</a>-->
+<!--        <a sec:authorize="isAnonymous()" th:href="@{/register}" class="userBtn">Register</a>-->
+<!--        <a sec:authorize ="isAuthenticated()" th:href="@{/logout}" class="userBtn">Logout</a>-->
+<!--    </div>-->
+<!--</nav>-->
+<div class="main">
+    <div class="content">
+        <div class="borderBox">
+            <form name="login" th:action="@{/login}" method="post" class="login">
+                <fieldset class="loginContainer">
+                <legend class="loginHeading">Please Login</legend>
+                    <hr class="line">
+                    <div th:if="${param.error}" class="alert alert-error">Invalid email or password</div>
+                    <div th:if="${param.logout}" class="alert alert-success">You have been logged out.</div>
+                    <label for="userEmail" class="label">Email</label>
+                    <input type="email" id="userEmail" name="userEmail" placeholder="user@email.com">
+                    <label for="password" class="label">Password</label>
+                    <input type="password" id="password" name="password" placeholder="password">
+                    <div class="form-actions">
+                        <button type="submit" class="btn">Log in</button>
+                    </div>
+                    <div><a class="regLink" th:href="@{/register}">Not a member? Register here!</a></div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/script/script.js"></script>
+</body>
+</html>

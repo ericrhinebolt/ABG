@@ -24,11 +24,11 @@ body {
 
 /*-------------------Navigation-------------------------*/
 
-.logo{
+.logo {
     width: 400px;
     height: 200px;
-    background-color: grey;
     margin: 2rem;
+    margin-left: 10rem;
 }
 
 .navBar {
@@ -40,13 +40,13 @@ body {
     border-bottom: 5px solid #31263E;
     background-image: linear-gradient(rgba(18, 6, 40, 0.82), rgb(27, 29, 29)), url("../img/keyboard_crop.png");
     background-size: 100%;
+    z-index: 999;
 }
 
-.navList{
+.navList {
     display: flex;
     justify-content: space-around;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 5rem;
 }
 
 .navBtn {
@@ -58,15 +58,18 @@ body {
     color: #ECA72C;
     background-color: #31263E;
     transition: all 0.5s;
+
 }
 
 .navBtn:hover {
     background-color: #44355B;
     transition: all 0.5s;
+    color: #EE5622;
 }
 
 .navUser {
     display: flex;
+    margin-left: auto;
 }
 
 .userBtn {
@@ -74,10 +77,21 @@ body {
     text-decoration: none;
     margin-top: 2rem;
     color: #EE5622;
+    transition: all 0.5s;
+}
+
+.userWelcome {
+    margin-right: 2rem;
+    margin-top: 2rem;
+    color: #ECA72C;
 }
 
 .userBtn:last-child {
     margin-right: 5rem;
+}
+
+.viewHidden {
+    display: none;
 }
 
 /*-------------------Main Body-------------------------*/
@@ -85,3 +99,412 @@ body {
 .main {
     margin-top: 40rem;
 }
+
+.main h1 {
+    text-align: center;
+}
+
+/*-------------------Home--------------------------------*/
+
+.hero{
+    width: 75%;
+    margin: 0 auto;
+    background-color: #31263E;
+    border: 5px solid #221E22;
+    padding: 5rem 20rem;
+}
+
+.heroHeading {
+    padding-bottom: 10rem;
+}
+
+.heroSplit {
+    display: flex;
+}
+
+.heroText {
+    font-size: 4rem;
+    padding-right: 10rem;
+    /*padding-left: 5rem;*/
+    text-align: center;
+
+}
+
+.heroCenterBox {
+    margin: auto 0;
+}
+
+.heroImg{
+    width: 45%;
+    box-shadow: 10px 5px 5px #221E22;
+}
+
+/*-------------------Login Form-------------------------*/
+
+.borderBox {
+    background-color: #31263E;
+    border: 5px solid #221E22;
+    width: 35rem;
+    padding: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login {
+    margin-left: auto;
+    margin-right: auto;
+    width: 35rem;
+    background-color: #31263E;
+}
+
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem;
+    border: none;
+}
+
+.loginHeading {
+    font-size: 2.4rem;
+}
+
+.line {
+    margin-bottom: 1.2rem;
+}
+
+.label {
+    font-size: 2rem;
+    margin-bottom: .5rem;
+}
+
+#userEmail, #password, .btn, #email, #userName {
+    margin-bottom: 1rem;
+}
+
+#userEmail, #password, #email, #userName, #gameSearch, #gameSearch2, #gameSearch3, #gameSearch4{
+    font-size: 1.8rem;
+    padding: .2rem;
+    background-color: antiquewhite;
+}
+
+.btn {
+    margin-top: 1rem;
+    border: 1px solid #000000;
+    text-decoration: none;
+    padding: .8rem 1.6rem;
+    font-size: 2rem;
+    color: #ECA72C;
+    background-color: #433457;
+    transition: all 0.5s;
+}
+
+.btn:hover, #searchBtn:hover, #searchBtn2:hover, #searchBtn3:hover, #searchBtn4:hover, .btnReview:hover {
+    background-color: #31263E;
+    transition: all 0.5s;
+    color: #EE5622;
+    cursor: pointer;
+}
+
+.regLink {
+    color: #EE5622;
+    text-decoration: none;
+    transition: all 0.5s;
+}
+
+.regLink:hover, .userBtn:hover, .reviewLogout:hover{
+    color: #ECA72C;
+    transition: all 0.5s;
+}
+
+/*---------------------------Games------------------------------*/
+
+.searchBox {
+    display: flex;
+    justify-content: center;
+}
+
+#gameSearch, #gameSearch2, #gameSearch3, #gameSearch4 {
+    margin: auto 2rem auto 0;
+    height: fit-content;
+}
+
+#searchBtn, #searchBtn2, #searchBtn3, #searchBtn4, #newReview, #newFavorite, .btnReview  {
+    border: 1px solid #000000;
+    text-decoration: none;
+    padding: .6rem 1.6rem;
+    font-size: 1.8rem;
+    color: #ECA72C;
+    background-color: #433457;
+    transition: all 0.5s;
+}
+
+.row {
+    justify-content: center;
+}
+
+.tableTitle {
+    font-size: 2.4rem;
+    color: #EE5622;
+}
+
+.gamesTable {
+    color: #ECA72C;
+    font-size: 2rem;
+}
+
+.table {
+
+    border: 5px solid #221E22;
+    background-color: #31263E;
+    box-shadow: 10px 5px 5px #221E22;
+}
+
+.gameRow, .gameCell, .gameRowHead {
+    border: 3px solid #221E22;
+}
+
+.gameRowHover {
+    transition: all 0.5s;
+}
+
+.gameRowHover:hover{
+    background-color: #433457;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+#nums {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    z-index: -1;
+}
+
+.pagination {
+    margin-top: 2rem;
+    width: fit-content;
+    background-color: #31263E;
+    color: #EE5622;
+    box-shadow: 5px 3px 5px #221E22;
+}
+
+.page-link, .page-item.disabled .page-link {
+    border-color: #221E22;
+    background-color: #31263E;
+    color: #EE5622;
+}
+
+.page-item.active .page-link {
+    background-color: #433457;
+    border-color: #ECA72C;
+    color: #ECA72C;
+}
+
+.page-link{
+    transition: all 0.5s;
+}
+
+.page-link:hover {
+    background-color: #433457;
+    color: #ECA72C;
+    transition: all 0.5s;
+}
+
+
+/*------------------------------------- Game Info -------------------------------------------------*/
+
+.mainContainer {
+    background-color: #31263E;
+    width: 45%;
+    border: 5px solid #221E22;
+    margin: 0 auto 2rem;
+}
+
+.marBot {
+    margin-bottom: 2rem;
+}
+
+.gameDescription,
+.gameRequirementsMin,
+.gameRequirementsRec,
+.gameDev,
+.gamePub,
+.gameLegal,
+.gameTitle,
+.gameId,
+.gameSummary,
+.gameReleaseDate,
+.gamePrice,
+.gameWebsite{
+    width: 95%;
+    margin: 0 auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.gameTitle{
+    font-size: 2.8rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+    border-bottom: 3px solid #221E22;
+}
+
+.gameWebsite {
+    padding-bottom: 2rem;
+
+}
+
+.gameWebsiteLink {
+    color: #EE5622;
+    transition: all 0.5s;
+}
+
+.gameWebsiteLink:hover {
+    color: #e5b368;
+    transition: all 0.5s;
+}
+
+.reviewBtnBox {
+    display: flex;
+    width: 95%;
+    justify-content: space-between;
+    border-bottom: 3px solid #221E22;
+    margin: 0 auto 2rem;
+    padding-bottom: 2rem;
+}
+
+.innerBtnBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#newReview, #newFavorite {
+    margin-right: 10rem;
+    font-size: 2.4rem;
+}
+
+#newReview:hover, #newFavorite:hover {
+    background-color: #2b1c33;
+    transition: all 0.5s;
+    color: #EE5622;
+    cursor: pointer;
+}
+
+.gameSummary {
+    width: 80%;
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.gameDescription {
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    padding-bottom: 2rem;
+    border-bottom: 3px solid #221E22;
+}
+
+.gameLegal{
+    padding-bottom: 2rem;
+}
+
+/*---------------------------------------------Review--------------------------------------*/
+
+.reviewBox {
+    padding-top: 2rem;
+}
+
+.hiddenInfo {
+    display: none;
+}
+
+.reviewHead{
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    width: 75%;
+    padding: 0 5rem 2rem;
+}
+
+.reviewTitle, .updateReviewTitle{
+    font-size: 2.4rem;
+}
+
+.reviewAuthor{
+    margin-top: auto;
+}
+
+.reviewLogout {
+    margin-top: auto;
+    text-decoration: none;
+    color: #EE5622;
+    transition: all 0.5s;
+}
+
+#reviewContent, #updateReviewContent{
+    resize: none;
+    background-color: antiquewhite;
+}
+
+.reviewForm, .updateReviewForm{
+    margin: 0 auto;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+}
+
+.btnReview {
+    font-size: 2rem;
+    margin: 2rem auto;
+    width: fit-content;
+}
+
+.alert {
+    transition: all 0.5s;
+    position: absolute;
+    top: 25rem;
+    left: auto;
+    right: auto;
+    width: 40%;
+    text-align: center;
+}
+
+.alertBox {
+    display: flex;
+    justify-content: space-around;
+}
+
+.reviewEditBox{
+    display: flex;
+    border-bottom: 5px solid #221E22;
+    padding-right: 3rem;
+    justify-content: right;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+}
+
+.reviewTitleBox{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 3rem;
+}
+
+.dateDiv, .reviewContentDiv{
+    padding: 0 3rem;
+}
+
+.reviewContentDiv {
+    margin-bottom: 1rem;
+}
+
+.backBox {
+    border: 5px solid #221E22;
+    background-color: #31263E;
+    box-shadow: 10px 5px 5px #221E22;
+}
+
+
