@@ -1,0 +1,21 @@
+<nav class="navBar">
+  <a th:href="@{../../index}">
+    <img class="logo" src="/img/abg_logo.svg" alt="ABG Logo">
+  </a>
+  <div class="navList">
+    <a th:href="@{../../reviews}" class="navBtn">Reviews</a>
+    <a th:href="@{../../games}" class="navBtn">Games</a>
+    <a th:href="@{'../../favorites/{username}' (username = ${#authentication.getPrincipal().getUsername})}" class="navBtn">Favorites</a>
+    <a th:href="@{../../about}" class="navBtn">About</a>
+    <a th:href="@{../../contact}" class="navBtn">Contact</a>
+  </div>
+  <div class="navUser">
+    <div class="userWelcome">Welcome
+      <span class="userName" sec:authentication="name">Username</span>!
+    </div>
+    <a sec:authorize="isAuthenticated()" th:href="@{../../user_profile}" class="userBtn">User Profile</a>
+    <a sec:authorize="isAnonymous()" th:href="@{../../login}" class="userBtn">Login</a>
+<!--    <a sec:authorize="isAuthenticated()" th:href="@{../../logout}" class="userBtn">Logout</a>-->
+    <a sec:authorize ="isAuthenticated()" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#logoutModal" class="userBtn trigger-btn">Logout</a>
+  </div>
+</nav>

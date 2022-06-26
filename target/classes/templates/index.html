@@ -1,27 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="../static/css/style.css" />
-    <link type="text/css" rel="stylesheet" href="../static/css/media.css" />
-    <link type="text/css" rel="stylesheet" href="/css/style.css" />
-    <link type="text/css" rel="stylesheet" href="/static/css/media.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap"
+          rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/5.1.3/css/bootstrap.min.css} "/>
+    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/media.css"/>
     <title>ABG - Alpha, Beta, Gold</title>
 </head>
 <body>
-<nav>
-    <a href="index.html">
-        <img src="#">
-    </a>
-    <div class="navList">
-        <a href="reviews.html">Reviews</a>
-        <a href="games.html">Games</a>
-        <a href="user_data.html">User Data</a>
+<div th:replace="fragments/nav">Navbar</div>
+<div sec:authorize="isAnonymous()" class="main">
+    <div class="content">
+        <div class="hero">
+            <h1 class="heroHeading">Welcome to Alpha, Beta, Gold.</h1>
+            <div class="heroSplit">
+                <div class="heroCenterBox"><p class="heroText">Keep up with news on your favorite games.</p></div>
+                <img class="heroImg" src="/img/hero.jpg" alt="Image of colorful desktop computer">
+            </div>
+            <div class="heroSplit">
+                <img class="heroImg" src="/img/hero2.jpg" alt="Long desk of many colorful desktop computers">
+                <div class="heroCenterBox"><p class="heroText2"> See what others think about your
+                    future favorite games.</p></div>
+            </div>
+            <div class="heroSplit">
+                <div class="heroCenterBox flex-box flex-column align-content-center">
+                    <p class="heroText2">Sign in or Sign up today to be a part of ABG!</p>
+                    <div class="heroBtnBox">
+                        <button class="btn heroLogin">Login</button>
+                        <button class="btn heroRegister">Register</button>
+                    </div>
+                </div>
+                <img class="heroImg" src="/img/hero4.jpg" alt="Close up of keyboard and mouse">
+            </div>
+        </div>
     </div>
-</nav>
-<h1>ABG - Alpha, Beta, Gold</h1>
+</div>
+<div sec:authorize="isAuthenticated()" class="main">
+    <div class="content">
+        <div class="hero narrowHero">
+            <h1 class="heroHeading">Welcome to Alpha, Beta, Gold</h1>
+            <div class="indexBox">
+
+                    <h2 class="newsFeedHeading one gridRow1">Screenshots from your favorite games</h2>
+                    <div class="newsParent one imgDiv" th:each="games : ${favNews}">
+
+                        <div th:id="'carouselControls-' + ${games.appId}" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" th:attr="data-bs-target='#carouselControls-' + ${games.appId}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" th:attr="data-bs-target='#carouselControls-' + ${games.appId}" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" th:attr="data-bs-target='#carouselControls-' + ${games.appId}" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <a class="favImgLink1"><img class="favImg1 maxHeight d-block w-100"></img></a>
+                                </div>
+                                <div class="carousel-item">
+                                    <a class="favImgLink2"><img class="favImg2 maxHeight d-block w-100"></img></a>
+                                </div>
+                                <div class="carousel-item">
+                                    <a class="favImgLink3"><img class="favImg3 maxHeight d-block w-100"></img></a>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button"
+                                    th:attr="data-bs-target='#carouselControls-' + ${games.appId}" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button"
+                                    th:attr="data-bs-target='#carouselControls-' + ${games.appId}" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+
+
+                        <!--                    -->
+                        <!--                    <a class="favImgLink1"><img class="favImg1"></img></a>-->
+                        <!--                    <a class="favImgLink2"><img class="favImg2"></img></a>-->
+                        <!--                    <a class="favImgLink3"><img class="favImg3"></img></a>-->
+                    </div>
+
+
+                    <h2 class="newsFeedHeading two gridRow1">Recent news feed for your favorite games</h2>
+                    <div class="newsParent two" th:each="games : ${favNews}">
+                        <input type="hidden" class="newsAppId" th:value="${games.appId}">
+                        <div class="newsDate"></div>
+                        <div class="newsGameName"></div>
+                        <div class="newsTitle"></div>
+                        <div class="newsContent"></div>
+                        <a class="newsLink gameWebsiteLink"></a>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/logout_modal"></div>
+
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script src="/script/index.js"></script>
 </body>
 </html>

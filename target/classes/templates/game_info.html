@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap"
+          rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <link th:rel="stylesheet" th:href="@{../../webjars/bootstrap/5.1.3/css/bootstrap.min.css} "/>
+    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/media.css"/>
+    <title>ABG - Alpha, Beta, Gold</title>
+</head>
+<body>
+<div th:replace="fragments/nav_two">Navbar</div>
+<div class="main">
+    <h1>Games</h1>
+    <form class="searchBox marBot">
+        <label for="gameSearch2"></label><input id="gameSearch2" type="text">
+        <button type="submit" id="searchBtn2">Search</button>
+    </form>
+</div>
+<div class="mainContainer">
+    <input type="hidden" id="hiddenAppId" th:value="${appId}">
+    <div class="gameTitle"></div>
+    <div class="gameSummary"></div>
+    <div class="reviewBtnBox">
+        <div><div class="gameReleaseDate"></div>
+        <div class="gamePrice"></div>
+        <div class="gameId"></div>
+        <div class="gameWebsite"></div>
+        </div>
+        <div class="innerBtnBox">
+            <button type="button" id="newReview">Review Now!</button>
+            <form th:action="@{/add_favorite}" method="post" th:object="${favorite}">
+                <input type="hidden" class="favAppId" name="appId">
+                <input type="hidden" class="favUserId" name="userId" th:value='${#authentication.getPrincipal().getUsername()}'>
+            <button type="submit" id="newFavorite">Add to Favorites</button>
+            </form>
+        </div>
+    </div>
+    <div class="gameDescription"></div>
+    <div class="gameRequirementsMin"></div>
+    <div class="gameRequirementsRec"></div>
+    <div class="gameDev"></div>
+    <div class="gamePub"></div>
+    <div class="gameLegal"></div>
+</div>
+<div th:replace="fragments/logout_modal"></div>
+
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script src="/script/script.js"></script>
+<script src="/script/game_script.js"></script>
+</body>
+</html>

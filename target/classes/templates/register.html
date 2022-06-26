@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap"
+          rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/5.1.3/css/bootstrap.min.css} "/>
+    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/media.css"/>
+    <title>ABG - Alpha, Beta, Gold</title>
+    <style>
+        .borderBox {
+            width: 45rem;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="fragments/nav_logout">Navbar</div>
+<div class="main">
+    <div class="alertBox">
+        <div class="alert alert-danger" role="alert" th:text="${userExists}" th:if="${userExists}"></div>
+    </div>
+    <div class="content">
+        <div class="borderBox">
+            <form name="register" class="login" th:action="@{/process_register}" method="post" th:object="${user}">
+                <fieldset class="loginContainer">
+                    <legend class="loginHeading">Registration</legend>
+                    <hr class="line">
+                    <label for="email" class="label">E-mail</label>
+                    <input id="email" type="email" th:field="*{userEmail}" required/>
+                    <label for="userName" class="label">Username</label>
+                    <input id="userName" type="text" th:field="*{userName}" required minlength="3" maxlength="20"/>
+                    <label for="password" class="label">Password</label>
+                    <input id="password" type="password" th:field="*{password}" required minlength="6" maxlength="20"/>
+                    <div>
+                        <button type="submit" class="btn">Sign Up</button>
+                    </div>
+                    <div><a class="regLink" th:href="@{/login}">Already a member? Login here!</a></div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/logout_modal"></div>
+
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script src="/script/script.js"></script>
+</body>
+</html>
