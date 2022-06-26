@@ -14,27 +14,7 @@
 </head>
 <body>
 <div th:replace="fragments/nav">Navbar</div>
-<!--<nav class="navBar">-->
-<!--    <a th:href="@{index}">-->
-<!--        <img class="logo" src="/img/abg_logo.svg" alt="ABG Logo">-->
-<!--    </a>-->
-<!--    <div class="navList">-->
-<!--        <a th:href="@{reviews}" class="navBtn">Reviews</a>-->
-<!--        <a th:href="@{games}" class="navBtn">Games</a>-->
-<!--        <a th:href="@{'favorites/{username}' (username = ${#authentication.getPrincipal().getUsername})}"-->
-<!--           class="navBtn">Favorites</a>-->
-<!--        <a th:href="@{about}" class="navBtn">About</a>-->
-<!--        <a th:href="@{contact}" class="navBtn">Contact</a>-->
-<!--    </div>-->
-<!--    <div class="navUser">-->
-<!--        <div class="userWelcome">Welcome-->
-<!--            <span sec:authentication="name">Username</span>!-->
-<!--        </div>-->
-<!--        <a sec:authorize="isAuthenticated()" th:href="@{user_profile}" class="userBtn">User Profile</a>-->
-<!--        <a sec:authorize="isAnonymous()" th:href="@{/login}" class="userBtn">Login</a>-->
-<!--        <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="userBtn">Logout</a>-->
-<!--    </div>-->
-<!--</nav>-->
+
 <div class="main">
     <h1>Reviews</h1>
     <form class="searchBox pb-5">
@@ -47,7 +27,7 @@
     <div class="alertBox">
         <div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
     </div>
-    <div class="row backBox">
+    <div class="row backBox mb-xl-5">
         <div class="col-lg-10 mt-5 mb-5">
             <div class="reviewMainDiv" th:each="reviews : ${reviews.page}">
                 <div class="reviewTitleBox pt-2">
@@ -66,7 +46,26 @@
                           th:if="${#strings.equals(#authentication.getPrincipal().getUsername(), reviews.reviewUser.userName)}"
                           th:action="@{'/reviews/delete/{reviewId}' (reviewId = ${reviews.reviewId})}"
                           th:method="delete">
-                        <button class="btn" type="submit">Delete?</button>
+<!--                        <input type="hidden" id="hiddenRevId" th:value="${reviews.reviewId}">-->
+                        <a class="btn trigger-btn" data-bs-toggle="modal" th:attr="data-bs-target='#deleteModal-' + ${reviews.reviewId}">Delete?</a>
+
+                        <div th:id="'deleteModal-' + ${reviews.reviewId}" class="modal fade">
+                            <div class="modal-dialog modal-confirm">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Do you really want to delete this review? This process cannot be undone.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" id="btnRevDel" class="btn">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </form>
                 </div>
             </div>
@@ -97,6 +96,8 @@
         </div>
     </div>
 </div>
+<div th:replace="fragments/logout_modal"></div>
+
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <script src="/script/script.js"></script>

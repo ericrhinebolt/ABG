@@ -14,26 +14,6 @@
 </head>
 <body>
 <div th:replace="fragments/nav_two">Navbar</div>
-<!--<nav class="navBar">-->
-<!--    <a th:href="@{../../index}">-->
-<!--        <img class="logo" src="/img/abg_logo.svg" alt="ABG Logo">-->
-<!--    </a>-->
-<!--    <div class="navList">-->
-<!--        <a th:href="@{../../reviews}" class="navBtn">Reviews</a>-->
-<!--        <a th:href="@{../../games}" class="navBtn">Games</a>-->
-<!--        <a th:href="@{'../../favorites/{username}' (username = ${#authentication.getPrincipal().getUsername})}" class="navBtn">Favorites</a>-->
-<!--        <a th:href="@{../../about}" class="navBtn">About</a>-->
-<!--        <a th:href="@{../../contact}" class="navBtn">Contact</a>-->
-<!--    </div>-->
-<!--    <div class="navUser">-->
-<!--        <div class="userWelcome">Welcome-->
-<!--            <span sec:authentication="name">Username</span>!-->
-<!--        </div>-->
-<!--        <a sec:authorize="isAuthenticated()" th:href="@{../../user_profile}" class="userBtn">User Profile</a>-->
-<!--        <a sec:authorize="isAnonymous()" th:href="@{../../login}" class="userBtn">Login</a>-->
-<!--        <a sec:authorize="isAuthenticated()" th:href="@{../../logout}" class="userBtn">Logout</a>-->
-<!--    </div>-->
-<!--</nav>-->
 <div class="main">
     <h1>Games</h1>
     <form class="searchBox marBot">
@@ -67,6 +47,7 @@
     <div class="gamePub"></div>
     <div class="gameLegal"></div>
 </div>
+<div th:replace="fragments/logout_modal"></div>
 
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>

@@ -8,8 +8,8 @@ const gameSearch3 = document.getElementById("gameSearch3");
 const searchBtn4 = document.getElementById("searchBtn4");
 const gameSearch4 = document.getElementById("gameSearch4");
 const alert = document.querySelector(".alert");
-const gameLink = document.querySelectorAll(".gameRow")
-console.log(gameLink)
+const gameLink = document.querySelectorAll(".gameRow");
+const gameFavLink = document.querySelectorAll(".gameLink")
 
 let requestOptions = {
     method: 'GET',
@@ -22,10 +22,6 @@ if (searchBtn != null) {
         console.log(gameSearch.value)
         let searchValue = gameSearch.value;
         window.location.href = `./games/search_results/${searchValue}`
-        // fetch(`/games/${searchValue}`, requestOptions)
-        //     .then(response => response.json())
-        //     .then(result => test(result))
-        //     .catch(error => console.log('error', error));
     })
 }
 
@@ -62,15 +58,6 @@ if (alert != null && alert.innerHTML !== null){
     }, 5000)
 }
 
-// fetch("/steamapi/Player", requestOptions)
-//     .then(response => response.json())
-//     .then(result => test(result))
-//     .catch(error => console.log('error', error));
-
-function test(jsonResult) {
-    console.log(jsonResult);
-}
-
 if (gameLink != null) {
     gameLink.forEach((link) => {
         link.addEventListener("click", function () {
@@ -79,23 +66,17 @@ if (gameLink != null) {
                 let linkValue = link.innerText.split("\t")[0]
                 console.log(linkValue)
                 window.location.href = `../../games/game_info/${linkValue}`
-
-                // fetch(`/steamapi/${linkValue}`, requestOptions)
-                //     .then(response => response.json())
-                //     .then(result => test(result))
-                //     .catch(error => console.log('error', error));
             }
         )
     })
 }
 
-//
-// .addEventListener("click", function () {
-//     console.log("IM HERE")
-//     // event.preventDefault();
-//     let linkValue = gameLink.innerText
-//     console.log(linkValue)
-//     fetch(`/steamapi/${linkValue}`, requestOptions)
-//         .then(response => response.json())
-//         .then(result => test(result))
-//         .catch(error => console.log('error', error));
+if(gameFavLink != null){
+    gameFavLink.forEach((link) =>{
+        link.addEventListener("click", function (){
+            let linkValue = link.innerText.split("\t")[0]
+            console.log(linkValue)
+            window.location.href = `../../games/game_info/${linkValue}`
+        })
+    })
+}

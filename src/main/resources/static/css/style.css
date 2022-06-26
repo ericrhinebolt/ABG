@@ -11,8 +11,21 @@
     padding: 0;
 }
 
+* {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+*:before,
+*:after {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
 html {
     font-size: 10px;
+    position: relative;
 }
 
 body {
@@ -20,6 +33,24 @@ body {
     font-size: 1.6rem;
     background-color: #44355B;
     color: #ECA72C;
+
+}
+
+body::after {
+    content: "";
+    background-image:
+            url("../img/background-space.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: .1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    min-height: 100vh;
+    z-index: -1;
 }
 
 /*-------------------Navigation-------------------------*/
@@ -78,6 +109,7 @@ body {
     margin-top: 2rem;
     color: #EE5622;
     transition: all 0.5s;
+    height: fit-content;
 }
 
 .userWelcome {
@@ -107,27 +139,38 @@ body {
 /*-------------------Home--------------------------------*/
 
 .hero{
-    width: 75%;
-    margin: 0 auto;
+    width: 65%;
     background-color: #31263E;
     border: 5px solid #221E22;
     padding: 5rem 20rem;
+    margin: 0 auto 10rem;
 }
+
+/*.narrowHero {*/
+/*    width: 40%;*/
+/*}*/
 
 .heroHeading {
     padding-bottom: 10rem;
+    font-size: 5rem;
 }
 
 .heroSplit {
     display: flex;
+    justify-content: space-between;
+    padding-bottom: 10rem;
 }
 
 .heroText {
     font-size: 4rem;
     padding-right: 10rem;
-    /*padding-left: 5rem;*/
     text-align: center;
+}
 
+.heroText2 {
+    font-size: 4rem;
+    /*padding-right: 10rem;*/
+    text-align: center;
 }
 
 .heroCenterBox {
@@ -138,6 +181,64 @@ body {
     width: 45%;
     box-shadow: 10px 5px 5px #221E22;
 }
+
+.heroBtnBox {
+    display: flex;
+    justify-content: center;
+}
+
+.heroLogin {
+    margin-right: 2rem;
+}
+
+.indexBox{
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+}
+
+.one {
+    grid-column: 1 / 2;
+}
+
+.two {
+    grid-column: 2 / 3;
+}
+
+.gridRow1 {
+    grid-row: 1 / 2;
+}
+
+.maxHeight {
+    height: 320px;
+}
+
+/*-----------------------------News Feed----------------------------*/
+
+.newsFeedHeading {
+    padding-bottom: 5rem;
+    text-align: center;
+}
+
+.newsParent {
+    border: 5px solid #221E22;
+    padding: 2rem;
+    width: 85%;
+    margin: 0 auto 2rem;
+}
+
+.newsDate {
+    margin-bottom: 1rem;
+}
+
+.newsGameName {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.newsTitle {
+    margin-bottom: 2rem;
+}
+
 
 /*-------------------Login Form-------------------------*/
 
@@ -214,6 +315,11 @@ body {
 .regLink:hover, .userBtn:hover, .reviewLogout:hover{
     color: #ECA72C;
     transition: all 0.5s;
+}
+
+.loginBtn{
+    width: fit-content;
+    margin: 0 auto;
 }
 
 /*---------------------------Games------------------------------*/
@@ -507,4 +613,86 @@ body {
     box-shadow: 10px 5px 5px #221E22;
 }
 
+/*-------------------------------Favorites---------------------------------*/
 
+.removeBtnForm{
+    display: flex;
+    justify-content: right;
+}
+
+.removeBtn {
+    color: #EE5622;
+    border: none;
+    background: none;
+    transition: all 0.5s;
+    padding: 0 1rem;
+    cursor: pointer;
+    opacity: 0;
+    text-decoration: none;
+}
+
+.gameRowHover:hover .removeBtn {
+    opacity: 100;
+    transition: all 0.5s;
+}
+
+.removeBtn:hover{
+    color: #e5b368;
+    transition: all 0.5s;
+}
+
+.removeBtnCell {
+    width: min-content;
+    cursor: default;
+}
+
+.removeBtnForm{
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.borRight{
+    border-right: none;
+}
+
+.borLeft{
+    border-left: none;
+}
+
+/*--------------------------------------Delete Modal---------------------------------*/
+
+.modal-content{
+    margin-top: 40vh;
+    background-color: #433457;
+    padding: 1rem;
+    border: 5px solid #1a181a;
+}
+
+.modal-header, .modal-footer {
+    border: none;
+}
+
+/*-----------------------------------------About----------------------------------------*/
+
+.aboutBox {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+.aboutBox p {
+    font-size: 2rem;
+    width: 100%;
+}
+
+.aboutBox ul {
+    width: 95%;
+    font-size: 1.8rem;
+}
+
+.aboutBox img {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}

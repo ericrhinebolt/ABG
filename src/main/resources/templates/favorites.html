@@ -13,30 +13,13 @@
 </head>
 <body>
 <div th:replace="fragments/nav_one">Navbar</div>
-<!--<nav class="navBar">-->
-<!--    <a th:href="@{../index}">-->
-<!--        <img class="logo" src="/img/abg_logo.svg" alt="ABG Logo">-->
-<!--    </a>-->
-<!--    <div class="navList">-->
-<!--        <a th:href="@{../reviews}" class="navBtn">Reviews</a>-->
-<!--        <a th:href="@{../games}" class="navBtn">Games</a>-->
-<!--        <a th:href="@{'../favorites/{username}' (username = ${#authentication.getPrincipal().getUsername})}" class="navBtn">Favorites</a>-->
-<!--        <a th:href="@{../about}" class="navBtn">About</a>-->
-<!--        <a th:href="@{../contact}" class="navBtn">Contact</a>-->
-<!--    </div>-->
-<!--    <div class="navUser">-->
-<!--        <div class="userWelcome">Welcome-->
-<!--            <span sec:authentication="name">Username</span>!-->
-<!--        </div>-->
-<!--        <a sec:authorize ="isAuthenticated()" th:href="@{../user_profile}" class="userBtn">User Profile</a>-->
-<!--        <a sec:authorize="isAnonymous()" th:href="@{../login}" class="userBtn">Login</a>-->
-<!--        <a sec:authorize ="isAuthenticated()" th:href="@{../logout}" class="userBtn">Logout</a>-->
-<!--    </div>-->
-<!--</nav>-->
 <div class="main">
     <h1>Favorites</h1>
 </div>
 <div class="container">
+    <div class="alertBox">
+        <div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
+    </div>
     <div class="row">
         <div class="col-lg-10 mt-5 mb-5">
             <table id="posts" class="table table-responsive-lg">
@@ -48,9 +31,37 @@
                 </thead>
                 <tbody class="gamesTable">
 
-                <tr class="gameRow gameRowHover" th:each="favorites : ${favorites.page}">
-                    <td class="gameCell gameAppId" th:text="${favorites.appId}">id</td>
-                    <td class="gameCell gameFavoriteTitle" th:text="${favorites.title}">title</td>
+                <tr class="gameRowHover" th:each="favorites : ${favorites.page}">
+                    <td class="gameCell gameLink gameAppId" th:text="${favorites.appId}">id</td>
+                    <td class="gameCell borRight gameLink gameFavoriteTitle" th:text="${favorites.title}">title</td>
+                    <td class="removeBtnCell borLeft gameCell">
+                        <form action="#"
+                          th:action="@{'/favorites/delete/{appId}' (appId = ${favorites.appId})}"
+                          th:method="delete" class="removeBtnForm">
+                        <input type="hidden" class="favUserId" name="userId" th:value='${#authentication.getPrincipal().getUsername()}'>
+<!--                        <button class="removeBtn" type="submit">Remove Favorite?</button>-->
+                        <div>
+                        <a class="removeBtn trigger-btn" data-bs-toggle="modal" th:attr="data-bs-target='#deleteModal-' + ${favorites.appId}">Remove Favorite?</a>
+                        </div>
+                        <div th:id="'deleteModal-' + ${favorites.appId}" class="modal fade">
+                            <div class="modal-dialog modal-confirm">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Do you really want to remove this favorite?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" id="btnRevDel" class="btn">Remove</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                    </td>
                 </tr>
 
                 </tbody>
@@ -81,9 +92,11 @@
         </div>
     </div>
 </div>
-<script src="/script/script.js"></script>
+<div th:replace="fragments/logout_modal"></div>
 
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script src="/script/script.js"></script>
+
 </body>
 </html>

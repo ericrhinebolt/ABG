@@ -15,6 +15,7 @@
     </div>
     <a sec:authorize ="isAuthenticated()" th:href="@{../user_profile}" class="userBtn">User Profile</a>
     <a sec:authorize="isAnonymous()" th:href="@{../login}" class="userBtn">Login</a>
-    <a sec:authorize ="isAuthenticated()" th:href="@{../logout}" class="userBtn">Logout</a>
+<!--    <a sec:authorize ="isAuthenticated()" th:href="@{../logout}" class="userBtn">Logout</a>-->
+    <a sec:authorize ="isAuthenticated()" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#logoutModal" class="userBtn trigger-btn">Logout</a>
   </div>
 </nav>

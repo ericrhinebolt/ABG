@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
+    <title>500 Error has occurred!</title>
+</head>
+<body>
+<div class="main">
+    <div style="display: flex; width:fit-content; margin: 0 auto; flex-direction: column; align-content: center; justify-content: center;">
+        <div style="display: flex;justify-content: space-around;">
+            <a th:href="@{index}">
+                <img class="logo" style="margin: 0" src="/img/abg_logo.svg" alt="ABG Logo">
+            </a>
+        </div>
+        <div style="margin: auto 0; padding: 5rem; border: 5px solid #221E22; background-color: #31263E">
+            <h1>500 Error has occurred!</h1>
+            <div style="display: flex; justify-content: center;">
+                <a th:href="@{index}" class="btn">Return to home</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

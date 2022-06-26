@@ -16,11 +16,8 @@ const favAppId = document.querySelector(".favAppId");
 const newLink = document.createElement("a");
 const hiddenAppId = document.getElementById("hiddenAppId");
 
-let queryString = hiddenAppId.value;
 
-// let queryString = window.location.href;
-// queryString = queryString.substring(38);
-// console.log(queryString);
+let queryString = hiddenAppId.value;
 
 window.onload = function (){
     fetch(`/steamapi/${queryString}`, requestOptions)
