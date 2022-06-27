@@ -16,6 +16,7 @@ let requestOptions = {
     redirect: 'follow'
 };
 
+//Adding event listeners to search buttons to link them to mapping
 if (searchBtn != null) {
     searchBtn.addEventListener("click", function (event) {
         event.preventDefault();
@@ -52,12 +53,14 @@ if (searchBtn4 != null) {
     })
 }
 
+//Timeout for alerts
 if (alert != null && alert.innerHTML !== null){
     setTimeout(() => {
         alert.setAttribute("style", "opacity: 0; transition: all 0.5s;");
     }, 5000)
 }
 
+//Event listener for game link
 if (gameLink != null) {
     gameLink.forEach((link) => {
         link.addEventListener("click", function () {
@@ -71,6 +74,7 @@ if (gameLink != null) {
     })
 }
 
+//Event listener for game fav link
 if(gameFavLink != null){
     gameFavLink.forEach((link) =>{
         link.addEventListener("click", function (){

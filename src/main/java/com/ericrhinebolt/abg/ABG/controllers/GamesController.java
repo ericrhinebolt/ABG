@@ -18,12 +18,14 @@ public class GamesController {
         this.gamesService = gamesService;
     }
 
+//    Mapping for searching games
     @GetMapping("/games/{search}")
     @ResponseBody
     public List<Games> findGamesByTitle(@PathVariable String search) {
         return gamesService.searchGames(search);
     }
 
+//    Mapping for full list of games
     @GetMapping("/games")
     public String games(@RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
                         @RequestParam(value = "size", required = false, defaultValue = "50") int size, Model model) {
@@ -31,11 +33,12 @@ public class GamesController {
         return "games";
     }
 
-    @ModelAttribute("game")
-    public List<Games> game() {
-        return gamesService.findAll();
-    }
+//    @ModelAttribute("game")
+//    public List<Games> game() {
+//        return gamesService.findAll();
+//    }
 
+//    Mapping for returning search results for games
     @GetMapping("/games/search_results/{search}")
     public String searchResults(@PathVariable String search,
                                 @RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
@@ -44,6 +47,7 @@ public class GamesController {
         return "search_results";
     }
 
+//    Mapping for getting game info
     @GetMapping("/games/game_info/{appid}")
     public String gameInfo(@PathVariable String appid, Model model){
         model.addAttribute("appId", appid);

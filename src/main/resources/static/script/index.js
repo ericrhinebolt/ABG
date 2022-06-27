@@ -21,8 +21,7 @@ let requestOptions = {
 };
 
 window.onload = function () {
-
-
+    // Loop to get news from Steam News API for every game in favorites list and populate index when user is signed in
     for (let i = 0; i < newsAppId.length; i++) {
         let newsAppIdvalue = newsAppId[i].value;
         console.log(newsAppId);
@@ -32,6 +31,7 @@ window.onload = function () {
             .then(result => assign(result))
             .catch(error => console.log('error', error));
 
+        // API call for news
         function assign(jsonResult) {
             const {appid} = jsonResult.appnews;
             let title, url, contents, date;
@@ -45,11 +45,13 @@ window.onload = function () {
             // newsParent.appendChild(newDateDiv);
             newsDate[i].innerHTML = new Date(date * 1000);
 
+            // API call for screenshots
             fetch(`/steamapi/${appid}`, requestOptions)
                 .then(response => response.json())
                 .then(result => subAssign(result))
                 .catch(error => console.log('error', error))
 
+            // Assinging values of screenshot call
             function subAssign(jsonResult) {
                 // newsParent.appendChild(newGameNameDiv);
                 console.log(i);
@@ -63,6 +65,7 @@ window.onload = function () {
                 imgDiv[i].setAttribute("style", "grid-row:" + (i + 2) + "/ " + (i + 3));
             }
 
+            // Assigns news info
             // newsParent.appendChild(newTitleDiv);
             newsTitle[i].innerHTML = title;
             // newsParent.appendChild(newContentsDiv)

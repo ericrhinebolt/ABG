@@ -22,7 +22,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-
+//    Method to return page implementation of list of favorites by user id
     public Page<Games> listFavorites(int userId, Pageable pageable) {
         Set<Integer> favorites = userRepository.findFavoritesByUserId(userId);
         List<Games> list = new ArrayList<>();

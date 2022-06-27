@@ -18,6 +18,7 @@ public class IndexController {
     @Autowired
     private UserRepository userRepository;
 
+//    Mapping for index, returns basic index if not logged in, and news feed if logged in.
     @RequestMapping("/index")
     public String index(@AuthenticationPrincipal CustomUserDetails userDetails, Model model){
 

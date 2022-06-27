@@ -13,6 +13,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @Table(name="games")
 public class Games {
+//    Entity Model for Games table
     @Id
     @Column(name="app_id")
     private int appId;

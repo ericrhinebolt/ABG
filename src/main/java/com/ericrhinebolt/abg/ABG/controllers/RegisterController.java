@@ -10,23 +10,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.Objects;
-
 @Controller
 public class RegisterController {
 
     @Autowired
     private UserRepository userRepository;
 
+//    Mapping for register
     @GetMapping("/register")
     public String register(Model model) {
         model.addAttribute("user", new User());
         return "register";
     }
 
+//    Mapping for processing registration
     @PostMapping("/process_register")
     public String processRegister(User user, RedirectAttributes redirectAttributes){
-        if (!Objects.equals(userRepository.findByUserEmail(user.getUserEmail()).getUserEmail(), user.getUserEmail())) {
+        if (!userRepository.existsByUserEmail(user.getUserEmail())) {
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             String encodedPassword = encoder.encode(user.getPassword());
             user.setPassword(encodedPassword);

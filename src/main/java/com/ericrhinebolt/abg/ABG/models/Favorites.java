@@ -12,6 +12,7 @@ import javax.persistence.Id;
 @Entity
 public class Favorites {
 
+//  Entity Model for favorites table
 @Id
  private int user_id;
 

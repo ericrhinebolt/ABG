@@ -7,9 +7,7 @@ const updateReviewTitle = document.querySelector(".updateReviewTitle")
 
 let queryString = hiddenAppId.value;
 
-// let queryString = window.location.href;
-// queryString = queryString.substring(41);
-
+// API call to get and assign name to new review
 window.onload = function (){
     fetch(`/steamapi/${queryString}`, requestOptions)
         .then(response => response.json())

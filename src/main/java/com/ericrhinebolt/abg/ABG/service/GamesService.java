@@ -28,26 +28,31 @@ public class GamesService {
         return gamesRepository.findAll();
     }
 
+//    Method to return games by title
     public List<Games> searchGames(String search) {
         return gamesRepository.findGamesByTitle(search);
     }
 
+//    Method to return games page collection by title
     public Page<Games> searchGames(String search, Pageable pageable) {
         return gamesRepository.findGamesByTitlePage(search, pageable);
     }
 
+//    Method to return Paged collection of all games
     public Paged<Games> getPage(int pageNumber, int size) {
         PageRequest request = PageRequest.of(pageNumber - 1, size, Sort.Direction.ASC, "title");
         Page<Games> gamesPage = gamesRepository.findGameWithTitle(request);
         return new Paged<>(gamesPage, Paging.of(gamesPage.getTotalPages(), pageNumber, size));
     }
 
+//    Method to return Paged collection of games by title search
     public Paged<Games> getPage(int pageNumber, int size, String search) {
         PageRequest request = PageRequest.of(pageNumber - 1, size, Sort.Direction.ASC, "title");
         Page<Games> gamesPage = searchGames(search, request);
         return new Paged<>(gamesPage, Paging.of(gamesPage.getTotalPages(), pageNumber, size));
     }
 
+//    Method to return Paged collection of favorites by userId
     public Paged<Games> getPage(int pageNumber, int size, int userId) {
         PageRequest request = PageRequest.of(pageNumber - 1, size, Sort.Direction.ASC, "app_id");
         Page<Games> favoritesPage = userService.listFavorites(userId, request);

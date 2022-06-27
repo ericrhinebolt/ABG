@@ -13,6 +13,7 @@ import java.io.IOException;
 public class SteamApiController {
     public final String steamKey = "";
 
+//    Mapping to get Player Ids from Steam API. Was used for testing, not used in application. Requires steamkey that has been removed from app for security.
     @RequestMapping(value ="/steamapi/Player", method = RequestMethod.GET)
     @ResponseBody
     public String steamapi() throws IOException {
@@ -39,6 +40,7 @@ public class SteamApiController {
         return response.body().string();
     }
 
+//    Mapping to get game info from Steam API
     @RequestMapping(value ="/steamapi/{appId}", method = RequestMethod.GET)
     @ResponseBody
     public String gameInfo(@PathVariable String appId) throws IOException {
@@ -62,6 +64,7 @@ public class SteamApiController {
         return response.body().string();
     }
 
+//    Mapping to get game news from Steam API
     @RequestMapping(value = "/steamapi/news/{appId}", method = RequestMethod.GET)
     @ResponseBody
     public String gameNews(@PathVariable String appId) throws IOException {
@@ -88,9 +91,6 @@ public class SteamApiController {
         assert response.body() != null;
         return response.body().string();
     }
-
-
-//    http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=1063730&count=3&maxlength=3000&format=json
 
     public SteamApiController() throws IOException {
     }

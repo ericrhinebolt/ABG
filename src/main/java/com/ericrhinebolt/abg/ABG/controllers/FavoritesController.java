@@ -30,12 +30,13 @@ public class FavoritesController {
         this.gamesService = gamesService;
     }
 
-
+//    Mapping for favorites view redirect
     @RequestMapping("/favorites")
     public String favorites(){
         return "redirect:/favorites/{username}";
     }
 
+//    Mapping for adding favorites - checks if user has a set of games, if not, makes new set.
     @PostMapping("/add_favorite")
     public String addFavorite(@RequestParam(value = "appId") int appId,
                               @RequestParam(value = "userId") String userId, RedirectAttributes redirectAttributes){
@@ -57,6 +58,7 @@ public class FavoritesController {
         return "redirect:/favorites/" + username;
     }
 
+//    Mapping for favorites view
     @GetMapping("/favorites/{username}")
     public String searchResults(@PathVariable String username,
                                 @RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
@@ -67,6 +69,7 @@ public class FavoritesController {
         return "favorites";
     }
 
+//    Mapping for removing favorites
     @DeleteMapping("/favorites/delete/{appId}")
     public String deleteFavorite(@PathVariable int appId, @RequestParam (value = "userId") String userId, RedirectAttributes redirectAttributes) {
         User u = userRepository.findByUserName(userId);

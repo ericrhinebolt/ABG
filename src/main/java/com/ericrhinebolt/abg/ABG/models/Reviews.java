@@ -8,10 +8,10 @@ import java.util.Objects;
 @Entity
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
 @Table(name="reviews")
 public class Reviews {
+//    Entity Model of Reviews table
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="review_id")
@@ -40,17 +40,16 @@ public class Reviews {
     public int hashCode() {
         return Objects.hash(reviewId, review, rating, date, reviewGame, reviewUser);
     }
+
+    @Override
+    public String toString() {
+        return "Reviews{" +
+                "reviewId=" + reviewId +
+                ", review='" + review + '\'' +
+                ", rating=" + rating +
+                ", date='" + date + '\'' +
+                ", reviewGame=" + reviewGame +
+                ", reviewUser=" + reviewUser +
+                '}';
+    }
 }
-
-
-
-
-//    @Column(name = "game_title")
-//    private String gameTitle;
-
-//    @Column(name = "app_id")
-//    private int appId;
-//    @Column(name = "user_name")
-//    private String userName;
-//    @Column(name = "user_id")
-//    private int userId;

@@ -14,6 +14,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 @Table(name="user")
 public class User {
+//    Entity Model for User table
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")

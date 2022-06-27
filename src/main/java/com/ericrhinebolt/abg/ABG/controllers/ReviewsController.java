@@ -31,6 +31,7 @@ public class ReviewsController {
         this.reviewsService = reviewsService;
     }
 
+//    Mapping to add new review page
     @GetMapping("/reviews/new_review/{appid}")
     public String gameInfo(@PathVariable String appid, Model model) {
         model.addAttribute("reviews", new Reviews());
@@ -38,6 +39,7 @@ public class ReviewsController {
         return "new_review";
     }
 
+//    Mapping to submit reviews
     @PostMapping("/submit_review")
     public String submitReview(Reviews reviews,
                              @RequestParam(value = "appId") int appId,
@@ -53,6 +55,7 @@ public class ReviewsController {
         return "redirect:/reviews";
     }
 
+//    Mapping to reviews
     @GetMapping("/reviews")
     public String reviews(@RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
                         @RequestParam(value = "size", required = false, defaultValue = "20") int size, Model model) {
@@ -60,8 +63,7 @@ public class ReviewsController {
         return "reviews";
     }
 
-    //changed above and below to 20
-
+//    Mapping to reviews search results
     @GetMapping("/reviews/search_results/{title}")
     public String searchResults(@PathVariable String title,
                                 @RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
@@ -70,6 +72,7 @@ public class ReviewsController {
         return "search_reviews";
     }
 
+//    Mapping to delete reviews
     @DeleteMapping("/reviews/delete/{reviewId}")
     public String deleteReview(@PathVariable int reviewId, RedirectAttributes redirectAttributes){
         reviewsRepository.deleteById(reviewId);
@@ -77,6 +80,7 @@ public class ReviewsController {
         return "redirect:/reviews";
     }
 
+//    Mapping to update reviews
     @GetMapping("/reviews/update/{reviewId}")
     public String updateReview(@PathVariable int reviewId, Model model){
         model.addAttribute("reviewId", reviewId);
@@ -87,6 +91,7 @@ public class ReviewsController {
         return "update_review";
     }
 
+//    Mapping to redirect to update reviews
     @RequestMapping(value = "/update",  method = {RequestMethod.GET, RequestMethod.PUT})
     public String update(Reviews reviews, @RequestParam(value = "updateReviewId") int updateReviewId, RedirectAttributes redirectAttributes){
         String review = reviews.getReview();

@@ -19,6 +19,8 @@ const hiddenAppId = document.getElementById("hiddenAppId");
 
 let queryString = hiddenAppId.value;
 
+// Javascript to fetch and populate game info on game info page
+
 window.onload = function (){
     fetch(`/steamapi/${queryString}`, requestOptions)
         .then(response => response.json())
@@ -49,6 +51,8 @@ function test(jsonResult) {
     console.log(jsonResult[queryString].data.name);
 }
 
+// Event listeners for buttons to add favorites and review
+
 newReview.addEventListener("click", function (){
     window.location.href = `../../reviews/new_review/${queryString}`
 })
@@ -56,5 +60,3 @@ newReview.addEventListener("click", function (){
 newFavorite.addEventListener("click", function (){
     window.location.href = "/add_favorite"
 })
-
-// http://localhost:8080/games/game_info/374850
