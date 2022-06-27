@@ -3,6 +3,8 @@ const gameAppId = document.querySelector(".gameAppId");
 
 let queryString = gameAppId.innerHTML;
 
+// Javascript to fetch and populate game title div on favorites page
+
 window.onload = function (){
     fetch(`/steamapi/${queryString}`, requestOptions)
         .then(response => response.json())

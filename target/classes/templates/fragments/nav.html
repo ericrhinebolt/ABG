@@ -15,32 +15,8 @@
         </div>
         <a sec:authorize ="isAuthenticated()" th:href="@{user_profile}" class="userBtn">User Profile</a>
         <a sec:authorize="isAnonymous()" th:href="@{/login}" class="userBtn">Login</a>
-<!--        <a sec:authorize ="isAuthenticated()" th:href="@{/logout}" class="userBtn">Logout</a>-->
-<!--        TESTING LOGOUT MODAL-->
 
         <a sec:authorize ="isAuthenticated()" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#logoutModal" class="userBtn trigger-btn">Logout</a>
-<!--        <a class="btn trigger-btn" data-bs-toggle="modal" th:attr="data-bs-target='#deleteModal-' + ${reviews.reviewId}">Delete?</a>-->
-
-<!--        <div id="logoutModal" class="modal fade">-->
-<!--            <div class="modal-dialog modal-confirm">-->
-<!--                <div class="modal-content">-->
-<!--                    <div class="modal-header">-->
-<!--                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>-->
-<!--                    </div>-->
-<!--                    <div class="modal-body">-->
-<!--                        <p>Leaving so soon?</p>-->
-<!--                    </div>-->
-<!--                    <div class="modal-footer">-->
-<!--                        <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>-->
-<!--                        <form name="logout" th:action="@{/logout}" method="post">-->
-<!--                        <button type="submit" id="btnRevDel" class="btn">Logout</button>-->
-<!--                        </form>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--        END TEST-->
 
 
 

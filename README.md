@@ -57,6 +57,7 @@ games, add games to their list of favorites and see news about their favorite ga
 
 </details>
 
+<hr>
 <details><summary>
 
 ### USER STORIES
@@ -160,6 +161,7 @@ games, add games to their list of favorites and see news about their favorite ga
 - Ability to change list sorting direction
 
 </details>
+<hr>
 
 ### DEVELOPER
 
